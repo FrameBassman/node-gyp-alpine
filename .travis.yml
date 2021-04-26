@@ -1,0 +1,30 @@
+jobs:
+  include:
+    - stage: node_12_20
+      language: minimal
+      dist: xenial
+      services:
+        - docker
+      script:
+        - mv Node12.Dockerfile Dockerfile
+        - docker build -t node12_20 .
+    
+    - stage: node_14_16
+      language: minimal
+      dist: xenial
+      services:
+        - docker
+      script:
+        - mv Node14.Dockerfile Dockerfile
+        - docker build -t node14_16 .
+
+
+
+stages:
+  - name: node_12_20
+  - name: node_14_16
+branches:
+  only:
+    - /.*/
+notifications:
+  email: false
