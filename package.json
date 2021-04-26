@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-gyp": "^8.0.0"
+    "fsevents": "^2.3.2"
   }
 }
