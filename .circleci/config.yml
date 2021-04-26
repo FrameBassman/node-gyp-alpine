@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  node12.20:
+    docker:
+      - image: node:12.20.1-alpine3.11
+    steps:
+      - checkout:
+          path: ~/repo
+      - restore_cache:
+          key: npm-cache-v1-{{ checksum "package-lock.json" }}
+      - run:
+          name: install libraries
+          command: npm ci
+      - save_cache:
+          key: npm-cache-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - /home/circleci/.npm
+
+workflows:
+  version: 2
+  matrix-build:
+    jobs:
+      - node12.20
+
